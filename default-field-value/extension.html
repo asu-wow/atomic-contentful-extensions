@@ -7,7 +7,8 @@
 </head>
 <body>
   <div class="cf-form-field">
-    <input type="text" class="cf-form-input">
+    <!-- <input type="text" class="cf-form-input"> -->
+    <select name="defaultValueField" id="defaultSelect" class="cf-form-input"></select>
     <div class="cf-form-hint">Default value:
       <span class="default-value"></span>
     </div>
@@ -15,7 +16,6 @@
   <script>
     'use strict';
     window.contentfulExtension.init(function (extension) {
-
       extension.window.startAutoResizer();
 
       var inputEl = document.querySelector('.cf-form-input');
@@ -23,7 +23,7 @@
 
       var detachValueChangeHandler = extension.field.onValueChanged(valueChangeHandler);
 
-      inputEl.addEventListener('input', keyboardInputHandler);
+      inputEl.addEventListener('select', keyboardInputHandler);
       window.addEventListener('onbeforeunload', unloadHandler);
 
       var defaultBrand = extension.parameters.instance.defaultBrand;
@@ -36,6 +36,15 @@
       if (isNewlyCreated && hasNoValue) {
         extension.field.setValue(defaultBrand || '');
       }
+
+      var defaultSelectValues = extension.parameters.instance.options;
+      defaultSelectValues.forEach((value) => {
+        var opt = document.createElement("option");
+        opt.value = value;
+        opt.innerHTML = value;
+        inputEl.appendChild(opt);
+      });
+      console.log('option', extension.parameters.instance.options);
 
       function valueChangeHandler(value) {
         value = value || '';
