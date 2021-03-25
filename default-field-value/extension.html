@@ -37,14 +37,15 @@
         extension.field.setValue(defaultBrand || '');
       }
 
-      var defaultSelectValues = extension.parameters.instance.options;
+      console.log('option', extension.parameters.instance);
+
+      var defaultSelectValues = extension.parameters.instance;
       defaultSelectValues.forEach((value) => {
         var opt = document.createElement("option");
         opt.value = value;
         opt.innerHTML = value;
         inputEl.appendChild(opt);
       });
-      console.log('option', extension.parameters.instance.options);
 
       function valueChangeHandler(value) {
         value = value || '';
