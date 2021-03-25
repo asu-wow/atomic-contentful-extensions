@@ -8,7 +8,7 @@
 <body>
   <div class="cf-form-field">
     <input type="text" class="cf-form-input">
-    <div class="cf-form-hint">I am a UI Extension with a default value:
+    <div class="cf-form-hint">Default value:
       <span class="default-value"></span>
     </div>
   </div>
@@ -26,15 +26,15 @@
       inputEl.addEventListener('input', keyboardInputHandler);
       window.addEventListener('onbeforeunload', unloadHandler);
 
-      var defaultColor = extension.parameters.instance.defaultColor;
-      var defaultColorText = document.createTextNode(defaultColor || 'none');
-      document.querySelector('.default-value').appendChild(defaultColorText);
+      var defaultBrand = extension.parameters.instance.defaultBrand;
+      var defaultBrandText = document.createTextNode(defaultBrand || 'none');
+      document.querySelector('.default-value').appendChild(defaultBrandText);
 
       var isNewlyCreated = extension.entry.getSys().version < 2;
       var hasNoValue = typeof extension.field.getValue() === 'undefined';
 
       if (isNewlyCreated && hasNoValue) {
-        extension.field.setValue(defaultColor || '');
+        extension.field.setValue(defaultBrand || '');
       }
 
       function valueChangeHandler(value) {
