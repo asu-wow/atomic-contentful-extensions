@@ -8,7 +8,12 @@
 <body>
   <div class="cf-form-field">
     <!-- <input type="text" class="cf-form-input"> -->
-    <select name="defaultValueField" id="defaultSelect" class="cf-form-input"></select>
+    <select id="brands" class="cf-form-input">
+      <option value="bigw">Big W</option>
+      <option value="bws">BWS</option>
+      <option value="rewards">Rewards</option>
+      <option value="woolworths">Woolworths</option>
+    </select>
     <div class="cf-form-hint">Default value:
       <span class="default-value"></span>
     </div>
@@ -38,14 +43,6 @@
       }
 
       console.log('option', extension.parameters.instance);
-
-      var defaultSelectValues = extension.parameters.instance;
-      defaultSelectValues.forEach((value) => {
-        var opt = document.createElement("option");
-        opt.value = value;
-        opt.innerHTML = value;
-        inputEl.appendChild(opt);
-      });
 
       function valueChangeHandler(value) {
         value = value || '';
